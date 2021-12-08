@@ -26,7 +26,7 @@ const Header = () => {
 
     const [anchorElNav, setAnchorElNav] = React.useState(null);
 
-    const handleOpenNavMenu = (event) => {
+    const handleOpenNavMenu = (event: any) => {
         setAnchorElNav(event.currentTarget);
     };
 
@@ -48,9 +48,8 @@ const Header = () => {
                         </Typography>
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                             {pages.map((page) => (
-                                <Link href={page == 'Main' ? '/' : `/${page.toLowerCase()}`} passHref>
+                                <Link key={page} href={page == 'Main' ? '/' : `/${page.toLowerCase()}`} passHref>
                                     <Button
-                                        key={page}
                                         sx={{ my: 2, color: 'white', display: 'block' }}
                                     >
                                         {page}
@@ -90,9 +89,12 @@ const Header = () => {
                                 }}
                             >
                                 {pages.map((page) => (
-                                    <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                        <Typography textAlign="center">{page}</Typography>
-                                    </MenuItem>
+                                    <Link key={page} href={page == 'Main' ? '/' : `/${page.toLowerCase()}`} passHref>
+                                        <MenuItem onClick={handleCloseNavMenu}>
+                                            <Typography textAlign="center">{page}</Typography>
+                                        </MenuItem>
+                                    </Link>
+
                                 ))}
                             </Menu>
                         </Box>

@@ -7,9 +7,14 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import { Masonry } from '@mui/lab';
+
+interface RootState {
+    allpost: any
+}
+
 const NewsTemplate = () => {
     const dispatch = useDispatch();
-    const allpost = useSelector(state => state.allpost)
+    const allpost = useSelector((state: RootState) => state.allpost)
     const { posts } = allpost
 
     useEffect(() => {
@@ -19,7 +24,7 @@ const NewsTemplate = () => {
         <>
             <h1>News</h1>
             <Masonry columns={4} spacing={1}>
-                {posts && posts.map((post, index) => (
+                {posts && posts.map((post: any, index: number) => (
                     <Card key={index} sx={{ maxWidth: 345 }}>
                         <CardActionArea>
                             <CardContent>
